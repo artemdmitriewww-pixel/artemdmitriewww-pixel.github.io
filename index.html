@@ -1,760 +1,391 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b1020" />
   <title>Artem Dmitriev — QA Engineer</title>
-
-  <meta
-    name="description"
-    content="QA Engineer specializing in Web, Mobile and API testing."
-  />
+  <meta name="description" content="QA Engineer specializing in Web, Mobile and API testing." />
 
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    :root{
+      --bg:#08101f;
+      --bg2:#0d1528;
+      --card:rgba(255,255,255,.055);
+      --card2:rgba(255,255,255,.035);
+      --line:rgba(255,255,255,.11);
+      --text:#f7f8fc;
+      --muted:#9ea8ba;
+      --accent:#8b5cf6;
+      --accent2:#38bdf8;
+      --good:#39d98a;
+      --shadow:0 24px 70px rgba(0,0,0,.35);
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      min-height: 100vh;
-      font-family:
-        Inter,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
-      color: #f4f4f5;
-
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
       background:
-        radial-gradient(
-          circle at 15% 15%,
-          rgba(124, 58, 237, 0.18),
-          transparent 30%
-        ),
-        radial-gradient(
-          circle at 85% 5%,
-          rgba(59, 130, 246, 0.14),
-          transparent 28%
-        ),
-        #09090b;
-
-      line-height: 1.6;
+        radial-gradient(900px 500px at 8% -10%, rgba(139,92,246,.28), transparent 60%),
+        radial-gradient(850px 540px at 95% 5%, rgba(56,189,248,.18), transparent 62%),
+        linear-gradient(180deg,var(--bg),#070b15 70%);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height:1.55;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
+    a{color:inherit;text-decoration:none}
+    .wrap{width:min(1160px,calc(100% - 40px));margin:auto}
+
+    header{
+      position:sticky; top:0; z-index:20;
+      backdrop-filter:blur(16px);
+      background:rgba(8,16,31,.68);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav{
+      min-height:72px;
+      display:flex;align-items:center;justify-content:space-between;gap:24px
+    }
+    .brand{
+      font-weight:800;
+      letter-spacing:-.03em;
+      font-size:19px;
+    }
+    .brand b{
+      background:linear-gradient(90deg,#c4b5fd,#7dd3fc);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+    .navlinks{display:flex;gap:24px;color:var(--muted);font-size:14px}
+    .navlinks a:hover{color:white}
+
+    .hero{
+      min-height:680px;
+      display:grid;
+      grid-template-columns:1.35fr .65fr;
+      gap:70px;
+      align-items:center;
+      padding:90px 0 74px;
+    }
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:9px;
+      padding:8px 12px;border:1px solid var(--line);
+      border-radius:999px;background:rgba(255,255,255,.04);
+      color:#d8deea;font-size:13px;margin-bottom:24px
+    }
+    .dot{
+      width:8px;height:8px;border-radius:50%;
+      background:var(--good);box-shadow:0 0 0 6px rgba(57,217,138,.10)
+    }
+    h1{
+      margin:0 0 24px;
+      font-size:clamp(54px,8vw,96px);
+      line-height:.94;
+      letter-spacing:-.07em;
+      max-width:800px;
+    }
+    .grad{
+      background:linear-gradient(90deg,#ddd6fe 0%,#93c5fd 60%,#67e8f9 100%);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+    .lead{
+      max-width:700px;
+      color:var(--muted);
+      font-size:19px;
+      margin:0 0 30px
+    }
+    .cta{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      min-height:46px;padding:0 17px;border-radius:12px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.045);
+      font-weight:700;font-size:14px;
+      transition:.18s ease
+    }
+    .btn:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.25)}
+    .btn.primary{background:#f8fafc;color:#0b1020;border-color:#f8fafc}
+
+    .portrait-wrap{
+      position:relative;display:flex;justify-content:flex-end
+    }
+    .portrait-wrap:before{
+      content:"";
+      position:absolute;inset:9% -8% -8% 10%;
+      background:linear-gradient(135deg,rgba(139,92,246,.36),rgba(56,189,248,.18));
+      filter:blur(55px);z-index:-1
+    }
+    .portrait{
+      width:min(360px,100%);
+      aspect-ratio:1/1.13;
+      object-fit:cover;
+      border-radius:30px;
+      border:1px solid rgba(255,255,255,.16);
+      box-shadow:var(--shadow);
+      background:#111827
     }
 
-    .container {
-      width: min(1120px, calc(100% - 40px));
-      margin: 0 auto;
+    section{padding:68px 0}
+    .section-head{margin-bottom:28px}
+    .kicker{
+      color:#a78bfa;font-size:12px;font-weight:800;
+      text-transform:uppercase;letter-spacing:.16em;margin-bottom:10px
+    }
+    h2{
+      margin:0;font-size:clamp(34px,5vw,50px);
+      letter-spacing:-.05em;line-height:1.05
     }
 
-    header {
-      padding: 26px 0;
+    .cards{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:16px
+    }
+    .card{
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:24px;
+      background:linear-gradient(180deg,var(--card),var(--card2));
+      box-shadow:0 16px 50px rgba(0,0,0,.12);
+    }
+    .card .icon{
+      width:42px;height:42px;border-radius:12px;
+      display:grid;place-items:center;
+      background:rgba(139,92,246,.12);
+      border:1px solid rgba(139,92,246,.24);
+      margin-bottom:18px;font-weight:900;color:#c4b5fd
+    }
+    .card h3{margin:0 0 8px;font-size:19px}
+    .card p{margin:0;color:var(--muted);font-size:14px}
+
+    .stack{display:flex;flex-wrap:wrap;gap:10px}
+    .chip{
+      padding:9px 12px;border-radius:10px;border:1px solid var(--line);
+      background:rgba(255,255,255,.035);font-size:13px;color:#dce3ef
     }
 
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .timeline{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .job{
+      position:relative;
+      padding:24px;border-radius:22px;border:1px solid var(--line);
+      background:linear-gradient(180deg,var(--card),var(--card2));
     }
+    .jobtop{display:flex;justify-content:space-between;gap:20px;align-items:flex-start}
+    .job h3{margin:0 0 5px;font-size:19px}
+    .role{color:#c4b5fd;font-size:14px;font-weight:700}
+    .date{color:#778196;font-size:12px;white-space:nowrap;padding-top:3px}
+    .job p{color:var(--muted);font-size:14px;margin:15px 0 0}
 
-    .logo {
-      font-size: 18px;
-      font-weight: 750;
-      letter-spacing: -0.03em;
-    }
-
-    .logo span {
-      color: #a78bfa;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 24px;
-      color: #a1a1aa;
-      font-size: 14px;
-    }
-
-    .nav-links a:hover {
-      color: #ffffff;
-    }
-
-    .hero {
-      padding: 90px 0 100px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.5fr 0.7fr;
-      align-items: center;
-      gap: 70px;
-    }
-
-    .status {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-
-      padding: 7px 12px;
-      margin-bottom: 26px;
-
-      border: 1px solid #27272a;
-      border-radius: 999px;
-
-      background: rgba(24, 24, 27, 0.7);
-      color: #d4d4d8;
-
-      font-size: 13px;
-    }
-
-    .status-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #22c55e;
-      box-shadow: 0 0 12px rgba(34, 197, 94, 0.8);
-    }
-
-    h1 {
-      font-size: clamp(52px, 7vw, 86px);
-      line-height: 0.98;
-      letter-spacing: -0.06em;
-      margin-bottom: 28px;
-    }
-
-    .gradient-text {
-      background: linear-gradient(90deg, #c4b5fd, #93c5fd);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero-description {
-      max-width: 680px;
-      margin-bottom: 34px;
-
-      font-size: 18px;
-      color: #a1a1aa;
-    }
-
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-
-      padding: 12px 17px;
-
-      border-radius: 10px;
-
-      font-size: 14px;
-      font-weight: 650;
-
-      transition: 0.2s ease;
-    }
-
-    .button-primary {
-      background: #f4f4f5;
-      color: #09090b;
-    }
-
-    .button-primary:hover {
-      transform: translateY(-2px);
-      background: #ffffff;
-    }
-
-    .button-secondary {
-      border: 1px solid #27272a;
-      background: rgba(24, 24, 27, 0.7);
-    }
-
-    .button-secondary:hover {
-      transform: translateY(-2px);
-      border-color: #52525b;
-      background: #18181b;
-    }
-
-    .photo-wrapper {
-      position: relative;
-    }
-
-    .photo-glow {
-      position: absolute;
-      inset: 10%;
-      background: rgba(124, 58, 237, 0.25);
-      filter: blur(60px);
-      z-index: -1;
-    }
-
-    .profile-photo {
-      display: block;
-
-      width: 100%;
-      max-width: 350px;
-      margin-left: auto;
-
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-
-      border-radius: 28px;
-      border: 1px solid #3f3f46;
-
-      box-shadow:
-        0 30px 80px rgba(0, 0, 0, 0.45),
-        0 0 0 6px rgba(255, 255, 255, 0.02);
-    }
-
-    section {
-      padding: 55px 0 90px;
-    }
-
-    .section-label {
-      margin-bottom: 17px;
-
-      color: #a78bfa;
-
-      font-size: 12px;
-      font-weight: 750;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-    }
-
-    h2 {
-      margin-bottom: 32px;
-
-      font-size: clamp(32px, 5vw, 46px);
-      letter-spacing: -0.045em;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .card {
-      padding: 25px;
-
-      border: 1px solid #27272a;
-      border-radius: 18px;
-
+    .contact{
+      padding:36px;border-radius:26px;border:1px solid var(--line);
       background:
-        linear-gradient(
-          145deg,
-          rgba(39, 39, 42, 0.62),
-          rgba(9, 9, 11, 0.66)
-        );
-
-      transition: 0.2s ease;
+        radial-gradient(420px 200px at 90% 0%,rgba(139,92,246,.18),transparent 65%),
+        rgba(255,255,255,.04);
+      box-shadow:var(--shadow)
     }
+    .contact p{color:var(--muted);max-width:650px}
+    .links{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
 
-    .card:hover {
-      transform: translateY(-4px);
-      border-color: #52525b;
+    footer{
+      border-top:1px solid rgba(255,255,255,.07);
+      padding:26px 0 36px;color:#778196;font-size:13px
     }
+    .foot{display:flex;justify-content:space-between;gap:20px}
 
-    .card-icon {
-      margin-bottom: 18px;
-      font-size: 26px;
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;gap:42px;padding-top:66px}
+      .portrait-wrap{justify-content:flex-start;order:-1}
+      .portrait{width:190px;aspect-ratio:1/1;border-radius:24px}
+      .cards,.timeline{grid-template-columns:1fr}
     }
-
-    .card h3 {
-      margin-bottom: 8px;
-      font-size: 18px;
-    }
-
-    .card p {
-      color: #a1a1aa;
-      font-size: 14px;
-    }
-
-    .skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .skill {
-      padding: 9px 13px;
-
-      border: 1px solid #27272a;
-      border-radius: 9px;
-
-      background: #111113;
-      color: #d4d4d8;
-
-      font-size: 13px;
-    }
-
-    .experience-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-    }
-
-    .experience-card {
-      padding: 24px;
-
-      border: 1px solid #27272a;
-      border-radius: 18px;
-
-      background: rgba(17, 17, 19, 0.75);
-    }
-
-    .experience-card h3 {
-      margin-bottom: 5px;
-    }
-
-    .role {
-      margin-bottom: 13px;
-      color: #a78bfa;
-      font-size: 14px;
-    }
-
-    .experience-card p {
-      color: #a1a1aa;
-      font-size: 14px;
-    }
-
-    .contact-box {
-      padding: 40px;
-
-      border: 1px solid #27272a;
-      border-radius: 22px;
-
-      background:
-        radial-gradient(
-          circle at 90% 0%,
-          rgba(124, 58, 237, 0.17),
-          transparent 35%
-        ),
-        #111113;
-    }
-
-    .contact-box h2 {
-      margin-bottom: 13px;
-    }
-
-    .contact-box > p {
-      max-width: 620px;
-      margin-bottom: 26px;
-
-      color: #a1a1aa;
-    }
-
-    .contact-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    footer {
-      padding: 28px 0 40px;
-
-      border-top: 1px solid #18181b;
-
-      color: #71717a;
-      font-size: 13px;
-    }
-
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    @media (max-width: 850px) {
-      .nav-links {
-        display: none;
-      }
-
-      .hero {
-        padding: 65px 0 75px;
-      }
-
-      .hero-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .photo-wrapper {
-        order: -1;
-      }
-
-      .profile-photo {
-        width: 180px;
-        margin: 0;
-        border-radius: 22px;
-      }
-
-      .grid,
-      .experience-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .contact-box {
-        padding: 27px;
-      }
-
-      .footer-inner {
-        flex-direction: column;
-      }
+    @media (max-width:680px){
+      .wrap{width:min(100% - 28px,1160px)}
+      .navlinks{display:none}
+      .hero{min-height:auto}
+      h1{font-size:clamp(48px,15vw,72px)}
+      section{padding:52px 0}
+      .contact{padding:26px}
+      .foot{flex-direction:column}
     }
   </style>
 </head>
-
 <body>
 
 <header>
-  <div class="container">
-    <nav>
-
-      <div class="logo">
-        Artem<span>.</span>
-      </div>
-
-      <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#experience">Experience</a>
-        <a href="#contact">Contact</a>
-      </div>
-
+  <div class="wrap nav">
+    <div class="brand">Artem <b>Dmitriev</b></div>
+    <nav class="navlinks">
+      <a href="#focus">Focus</a>
+      <a href="#stack">Stack</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
     </nav>
   </div>
 </header>
 
-
-<main>
+<main class="wrap">
 
   <section class="hero">
-    <div class="container hero-grid">
+    <div>
+      <div class="eyebrow"><span class="dot"></span> QA Engineer · Web · Mobile · API</div>
 
-      <div>
+      <h1>
+        I find issues<br>
+        <span class="grad">before users do.</span>
+      </h1>
 
-        <div class="status">
-          <span class="status-dot"></span>
-          QA Engineer · Web · Mobile · API
-        </div>
+      <p class="lead">
+        QA Engineer with 3.5+ years of experience testing web products,
+        iOS/Android applications and REST APIs. I work with complex flows,
+        integrations, backend validation and release quality.
+      </p>
 
-        <h1>
-          Artem<br />
-          <span class="gradient-text">Dmitriev.</span>
-        </h1>
-
-        <p class="hero-description">
-          QA Engineer with 3.5+ years of experience in Web,
-          iOS/Android and API testing. I work with high-load products,
-          mobile applications, backend services and complex integrations.
-        </p>
-
-        <div class="buttons">
-
-          <a
-            class="button button-primary"
-            href="https://github.com/artemdmitriewww-pixel"
-            target="_blank"
-          >
-            GitHub →
-          </a>
-
-          <a
-            class="button button-secondary"
-            href="https://linkedin.com/in/artem-dmitriewww"
-            target="_blank"
-          >
-            LinkedIn
-          </a>
-
-          <a
-            class="button button-secondary"
-            href="https://t.me/artem_dmitriewww"
-            target="_blank"
-          >
-            Telegram
-          </a>
-
-        </div>
-
+      <div class="cta">
+        <a class="btn primary" href="https://github.com/artemdmitriewww-pixel" target="_blank" rel="noreferrer">GitHub ↗</a>
+        <a class="btn" href="https://linkedin.com/in/artem-dmitriewww" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a class="btn" href="https://t.me/artem_dmitriewww" target="_blank" rel="noreferrer">Telegram</a>
       </div>
+    </div>
 
-      <div class="photo-wrapper">
-        <div class="photo-glow"></div>
-
-        <img
-          class="profile-photo"
-          src="photo.jpg"
-          alt="Artem Dmitriev"
-        />
-      </div>
-
+    <div class="portrait-wrap">
+      <img class="portrait" src="photo.jpg" alt="Artem Dmitriev">
     </div>
   </section>
 
+  <section id="focus">
+    <div class="section-head">
+      <div class="kicker">What I test</div>
+      <h2>Quality across the whole product.</h2>
+    </div>
 
-  <section id="about">
-    <div class="container">
+    <div class="cards">
+      <article class="card">
+        <div class="icon">W</div>
+        <h3>Web</h3>
+        <p>Functional, regression, exploratory and integration testing of web applications and user flows.</p>
+      </article>
 
-      <div class="section-label">
-        Focus
-      </div>
+      <article class="card">
+        <div class="icon">M</div>
+        <h3>Mobile</h3>
+        <p>iOS and Android testing, WebView, network debugging, deep links and device-specific behavior.</p>
+      </article>
 
-      <h2>
-        Testing across the whole product.
-      </h2>
-
-      <div class="grid">
-
-        <div class="card">
-          <div class="card-icon">◫</div>
-
-          <h3>Web</h3>
-
-          <p>
-            Functional, regression, integration and exploratory
-            testing of web applications and complex user flows.
-          </p>
-        </div>
-
-
-        <div class="card">
-          <div class="card-icon">▣</div>
-
-          <h3>Mobile</h3>
-
-          <p>
-            iOS and Android testing, WebView, network analysis,
-            device-specific issues and mobile integrations.
-          </p>
-        </div>
-
-
-        <div class="card">
-          <div class="card-icon">⌁</div>
-
-          <h3>API & Backend</h3>
-
-          <p>
-            REST API testing, SQL validation, logs,
-            microservices and backend integration testing.
-          </p>
-        </div>
-
-      </div>
-
+      <article class="card">
+        <div class="icon">API</div>
+        <h3>API & Backend</h3>
+        <p>REST API testing, SQL validation, logs, microservices and backend integration checks.</p>
+      </article>
     </div>
   </section>
 
+  <section id="stack">
+    <div class="section-head">
+      <div class="kicker">Tech stack</div>
+      <h2>Tools I work with.</h2>
+    </div>
 
-  <section id="skills">
-    <div class="container">
-
-      <div class="section-label">
-        Tech stack
-      </div>
-
-      <h2>
-        Tools I work with.
-      </h2>
-
-      <div class="skills">
-
-        <span class="skill">Manual Testing</span>
-        <span class="skill">REST API</span>
-        <span class="skill">Postman</span>
-        <span class="skill">Swagger</span>
-
-        <span class="skill">SQL</span>
-        <span class="skill">PostgreSQL</span>
-
-        <span class="skill">Charles</span>
-        <span class="skill">Proxyman</span>
-        <span class="skill">DevTools</span>
-
-        <span class="skill">Android Studio</span>
-        <span class="skill">Xcode</span>
-        <span class="skill">BrowserStack</span>
-
-        <span class="skill">Python</span>
-        <span class="skill">Pytest</span>
-
-        <span class="skill">Git</span>
-        <span class="skill">GitLab CI</span>
-        <span class="skill">CI/CD</span>
-
-        <span class="skill">Docker</span>
-        <span class="skill">Kafka</span>
-        <span class="skill">Firebase</span>
-
-        <span class="skill">Jira</span>
-        <span class="skill">Qase</span>
-        <span class="skill">TestRail</span>
-
-      </div>
-
+    <div class="stack">
+      <span class="chip">Manual Testing</span>
+      <span class="chip">REST API</span>
+      <span class="chip">Postman</span>
+      <span class="chip">Swagger</span>
+      <span class="chip">SQL</span>
+      <span class="chip">PostgreSQL</span>
+      <span class="chip">Charles</span>
+      <span class="chip">Proxyman</span>
+      <span class="chip">DevTools</span>
+      <span class="chip">Android Studio</span>
+      <span class="chip">Xcode</span>
+      <span class="chip">BrowserStack</span>
+      <span class="chip">Python</span>
+      <span class="chip">Pytest</span>
+      <span class="chip">Git</span>
+      <span class="chip">GitLab CI</span>
+      <span class="chip">CI/CD</span>
+      <span class="chip">Docker</span>
+      <span class="chip">Kafka</span>
+      <span class="chip">Firebase</span>
+      <span class="chip">Qase</span>
+      <span class="chip">TestRail</span>
+      <span class="chip">Jira</span>
     </div>
   </section>
-
 
   <section id="experience">
-    <div class="container">
+    <div class="section-head">
+      <div class="kicker">Experience</div>
+      <h2>Selected work.</h2>
+    </div>
 
-      <div class="section-label">
-        Experience
-      </div>
-
-      <h2>
-        Selected experience.
-      </h2>
-
-      <div class="experience-grid">
-
-        <div class="experience-card">
-          <h3>CleverPumpkin</h3>
-
-          <div class="role">
-            QA Engineer · Mobile
+    <div class="timeline">
+      <article class="job">
+        <div class="jobtop">
+          <div>
+            <h3>CleverPumpkin</h3>
+            <div class="role">QA Engineer · Mobile</div>
           </div>
-
-          <p>
-            iOS/Android testing, REST API, network request analysis,
-            UI testing and test documentation.
-          </p>
+          <div class="date">2026 — now</div>
         </div>
+        <p>iOS/Android testing, REST API, network request analysis, UI checks and test documentation.</p>
+      </article>
 
-
-        <div class="experience-card">
-          <h3>Yandex GO</h3>
-
-          <div class="role">
-            Lead QA Specialist
+      <article class="job">
+        <div class="jobtop">
+          <div>
+            <h3>Yandex GO</h3>
+            <div class="role">Lead QA Specialist</div>
           </div>
-
-          <p>
-            Mobile marketplace testing, REST APIs for microservices,
-            PostgreSQL validation and CI test runs.
-          </p>
+          <div class="date">2024 — 2026</div>
         </div>
+        <p>Mobile marketplace testing, microservice APIs, PostgreSQL validation and CI test runs.</p>
+      </article>
 
-
-        <div class="experience-card">
-          <h3>It's AI</h3>
-
-          <div class="role">
-            QA Engineer
+      <article class="job">
+        <div class="jobtop">
+          <div>
+            <h3>It's AI</h3>
+            <div class="role">QA Engineer</div>
           </div>
-
-          <p>
-            Built QA processes from scratch for an AI SaaS product,
-            covering Web, Mobile Web, REST API and PostgreSQL.
-          </p>
+          <div class="date">2023 — 2024</div>
         </div>
+        <p>Built QA processes from scratch for an AI SaaS product across Web, Mobile Web, API and PostgreSQL.</p>
+      </article>
 
-
-        <div class="experience-card">
-          <h3>Open-people AI</h3>
-
-          <div class="role">
-            QA Engineer
+      <article class="job">
+        <div class="jobtop">
+          <div>
+            <h3>Open-people AI</h3>
+            <div class="role">QA Engineer</div>
           </div>
-
-          <p>
-            Functional and API testing of an AI HR platform,
-            backend logic and product features.
-          </p>
+          <div class="date">2022 — 2023</div>
         </div>
-
-      </div>
-
+        <p>Functional and API testing of an AI HR platform, backend logic and product features.</p>
+      </article>
     </div>
   </section>
-
 
   <section id="contact">
-    <div class="container">
+    <div class="contact">
+      <div class="kicker">Contact</div>
+      <h2>Let’s build something reliable.</h2>
+      <p>
+        Reach me by email, Telegram or LinkedIn, or check my GitHub for projects and experiments.
+      </p>
 
-      <div class="contact-box">
-
-        <div class="section-label">
-          Contact
-        </div>
-
-        <h2>
-          Get in touch.
-        </h2>
-
-        <p>
-          You can contact me by email, Telegram or LinkedIn,
-          or take a look at my GitHub projects.
-        </p>
-
-        <div class="contact-links">
-
-          <a
-            class="button button-primary"
-            href="mailto:artemdmitriewww@gmail.com"
-          >
-            Email
-          </a>
-
-          <a
-            class="button button-secondary"
-            href="https://t.me/artem_dmitriewww"
-            target="_blank"
-          >
-            Telegram
-          </a>
-
-          <a
-            class="button button-secondary"
-            href="https://linkedin.com/in/artem-dmitriewww"
-            target="_blank"
-          >
-            LinkedIn
-          </a>
-
-          <a
-            class="button button-secondary"
-            href="https://github.com/artemdmitriewww-pixel"
-            target="_blank"
-          >
-            GitHub
-          </a>
-
-        </div>
-
+      <div class="links">
+        <a class="btn primary" href="mailto:artemdmitriewww@gmail.com">Email</a>
+        <a class="btn" href="https://t.me/artem_dmitriewww" target="_blank" rel="noreferrer">Telegram</a>
+        <a class="btn" href="https://linkedin.com/in/artem-dmitriewww" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a class="btn" href="https://github.com/artemdmitriewww-pixel" target="_blank" rel="noreferrer">GitHub</a>
       </div>
-
     </div>
   </section>
-
 </main>
 
-
 <footer>
-  <div class="container footer-inner">
-
-    <div>
-      © 2026 Artem Dmitriev
-    </div>
-
-    <div>
-      QA Engineer · Web · Mobile · API
-    </div>
-
+  <div class="wrap foot">
+    <span>© 2026 Artem Dmitriev</span>
+    <span>QA Engineer · Web · Mobile · API</span>
   </div>
 </footer>
 
