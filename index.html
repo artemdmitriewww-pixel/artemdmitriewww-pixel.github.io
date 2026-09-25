@@ -1,25 +1,480 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Artem Dmitriev — QA Engineer</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Artem Dmitriev — QA Engineer</title>
+  <meta
+    name="description"
+    content="QA Engineer specializing in Web, Mobile and API testing."
+  />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      color: #f4f4f5;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(124, 58, 237, 0.18), transparent 30%),
+        radial-gradient(circle at 80% 10%, rgba(59, 130, 246, 0.14), transparent 30%),
+        #09090b;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1100px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 28px 0;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .logo span {
+      color: #a78bfa;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      font-size: 14px;
+      color: #a1a1aa;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    .hero {
+      min-height: 68vh;
+      display: flex;
+      align-items: center;
+      padding: 70px 0 90px;
+    }
+
+    .hero-content {
+      max-width: 800px;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 26px;
+      padding: 7px 12px;
+      border: 1px solid #27272a;
+      border-radius: 999px;
+      background: rgba(24, 24, 27, 0.65);
+      color: #d4d4d8;
+      font-size: 13px;
+      backdrop-filter: blur(10px);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.7);
+    }
+
+    h1 {
+      max-width: 900px;
+      font-size: clamp(48px, 8vw, 88px);
+      line-height: 0.98;
+      letter-spacing: -0.06em;
+      margin-bottom: 28px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #c4b5fd, #93c5fd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      max-width: 650px;
+      font-size: 19px;
+      color: #a1a1aa;
+      margin-bottom: 34px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: 0.2s ease;
+    }
+
+    .button-primary {
+      background: #f4f4f5;
+      color: #09090b;
+    }
+
+    .button-primary:hover {
+      background: #fff;
+      transform: translateY(-2px);
+    }
+
+    .button-secondary {
+      border: 1px solid #27272a;
+      background: rgba(24, 24, 27, 0.65);
+      color: #e4e4e7;
+    }
+
+    .button-secondary:hover {
+      border-color: #52525b;
+      background: #18181b;
+      transform: translateY(-2px);
+    }
+
+    section {
+      padding: 40px 0 90px;
+    }
+
+    .section-label {
+      margin-bottom: 18px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #a78bfa;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    h2 {
+      margin-bottom: 32px;
+      font-size: clamp(30px, 5vw, 46px);
+      letter-spacing: -0.04em;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      padding: 24px;
+      border: 1px solid #27272a;
+      border-radius: 18px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(39, 39, 42, 0.65),
+          rgba(9, 9, 11, 0.65)
+        );
+      transition: 0.2s ease;
+    }
+
+    .card:hover {
+      border-color: #52525b;
+      transform: translateY(-4px);
+    }
+
+    .card-icon {
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: #a1a1aa;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill {
+      padding: 9px 13px;
+      border: 1px solid #27272a;
+      border-radius: 9px;
+      background: #111113;
+      color: #d4d4d8;
+      font-size: 13px;
+    }
+
+    .contact-box {
+      padding: 38px;
+      border: 1px solid #27272a;
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at 90% 0%, rgba(124, 58, 237, 0.16), transparent 35%),
+        #111113;
+    }
+
+    .contact-box h2 {
+      margin-bottom: 14px;
+    }
+
+    .contact-box p {
+      max-width: 600px;
+      margin-bottom: 24px;
+      color: #a1a1aa;
+    }
+
+    footer {
+      padding: 28px 0 40px;
+      border-top: 1px solid #18181b;
+      color: #71717a;
+      font-size: 13px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    @media (max-width: 800px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 70px 0;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-box {
+        padding: 26px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <h1>Artem Dmitriev</h1>
-    <h2>QA Engineer</h2>
 
-    <p>Web, Mobile and API testing.</p>
+<header>
+  <div class="container">
+    <nav>
+      <div class="logo">
+        Artem<span>.</span>
+      </div>
 
-    <h3>Skills</h3>
-    <p>
-        Python, Pytest, Playwright, Postman, SQL,
-        Charles Proxy, Android Studio, Xcode,
-        GitLab CI, Allure, Grafana, Sentry.
-    </p>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </div>
+</header>
 
-    <h3>GitHub</h3>
-    <a href="https://github.com/artemdmitriewww-pixel">
-        github.com/artemdmitriewww-pixel
-    </a>
+<main>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+
+        <div class="status">
+          <span class="status-dot"></span>
+          QA Engineer
+        </div>
+
+        <h1>
+          I test products<br />
+          before users
+          <span class="gradient-text">break them.</span>
+        </h1>
+
+        <p>
+          QA Engineer focused on Web, Mobile and API testing.
+          I work with complex user flows, integrations,
+          backend APIs and mobile applications.
+        </p>
+
+        <div class="buttons">
+          <a
+            class="button button-primary"
+            href="https://github.com/artemdmitriewww-pixel"
+            target="_blank"
+          >
+            View GitHub →
+          </a>
+
+          <a
+            class="button button-secondary"
+            href="#skills"
+          >
+            My stack
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+
+      <div class="section-label">What I test</div>
+
+      <h2>
+        From UI to API.
+      </h2>
+
+      <div class="grid">
+
+        <div class="card">
+          <div class="card-icon">◫</div>
+          <h3>Web</h3>
+          <p>
+            Functional, regression, integration and exploratory
+            testing of web applications.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">▣</div>
+          <h3>Mobile</h3>
+          <p>
+            Android and iOS testing, deep links, WebView,
+            network debugging and device-specific issues.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">⌁</div>
+          <h3>API</h3>
+          <p>
+            REST API testing, request analysis,
+            integrations, SQL and backend validation.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="container">
+
+      <div class="section-label">Stack</div>
+
+      <h2>
+        Tools I work with.
+      </h2>
+
+      <div class="skills">
+        <span class="skill">Python</span>
+        <span class="skill">Pytest</span>
+        <span class="skill">Playwright</span>
+        <span class="skill">Postman</span>
+        <span class="skill">REST API</span>
+        <span class="skill">SQL</span>
+        <span class="skill">PostgreSQL</span>
+        <span class="skill">Charles Proxy</span>
+        <span class="skill">DevTools</span>
+        <span class="skill">Android Studio</span>
+        <span class="skill">Xcode</span>
+        <span class="skill">BrowserStack</span>
+        <span class="skill">Git</span>
+        <span class="skill">GitLab CI</span>
+        <span class="skill">Allure</span>
+        <span class="skill">Grafana</span>
+        <span class="skill">Sentry</span>
+        <span class="skill">WebSocket</span>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+
+      <div class="contact-box">
+
+        <div class="section-label">Contact</div>
+
+        <h2>
+          Let's build something reliable.
+        </h2>
+
+        <p>
+          You can find my projects, test automation experiments
+          and other work on GitHub.
+        </p>
+
+        <a
+          class="button button-primary"
+          href="https://github.com/artemdmitriewww-pixel"
+          target="_blank"
+        >
+          github.com/artemdmitriewww-pixel →
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div>© 2026 Artem Dmitriev</div>
+    <div>QA Engineer · Web · Mobile · API</div>
+  </div>
+</footer>
+
 </body>
 </html>
